@@ -24,3 +24,8 @@ def hello():
 def products():
     products = db.session.query(Product).all() # SQLAlchemy request => 'SELECT * FROM products'
     return products_schema.jsonify(products)
+
+@app.route('/products/id', methods=['GET'])
+def read_product(id):
+    product = db.session.query(products).get(1) # SQLAlchemy request => 'SELECT * FROM products'
+    return products_schema.jsonify(product)
